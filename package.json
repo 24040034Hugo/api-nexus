@@ -1,0 +1,12 @@
+{
+  "name": "api-nexus",
+  "version": "1.0.0",
+  "description": "Dashboard de APIs con Node.js Express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.22.1"
+  }
+}
