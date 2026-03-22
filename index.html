@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Nexus — Dashboard Estático</title>
+  <title>API Nexus — Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="styles.css">
@@ -20,7 +20,7 @@
       </div>
       <div class="header-right">
         <span class="badge">v2.0</span>
-        <span class="badge">ESTÁTICA</span>
+        <span class="badge">STATIC·MOD</span>
       </div>
     </header>
 
@@ -62,10 +62,85 @@
     <main class="content">
       <section id="sec-geo" class="sec activa">
         <h2 class="sec-title">Geolocalización <span class="sec-tag">LEAFLET</span></h2>
-        <div class="card-glass"><div id="map" style="height: 500px;"></div></div>
+        <div class="card-glass"><div id="map" style="height: 500px; width: 100%;"></div></div>
       </section>
 
-      </main>
+      <section id="sec-redes" class="sec">
+        <h2 class="sec-title">GitHub Profile <span class="sec-tag">GITHUB API</span></h2>
+        <div class="search-box">
+          <input type="text" id="github-input" placeholder="Usuario de GitHub...">
+          <button id="github-btn">BUSCAR</button>
+        </div>
+        <div id="perfil-card" class="card-glass" style="display:none;">
+          <img id="perfil-avatar" src="" alt="Avatar">
+          <h3 id="perfil-nombre"></h3>
+          <p id="perfil-username"></p>
+          <p id="perfil-bio"></p>
+          <div class="stats">
+            <div><span id="stat-repos">0</span> Repos</div>
+            <div><span id="stat-followers">0</span> Seguidores</div>
+          </div>
+        </div>
+        <p id="perfil-error" class="msg-err" style="display:none;">Usuario no encontrado.</p>
+      </section>
+
+      <section id="sec-ecomm" class="sec">
+        <h2 class="sec-title">E-Commerce <span class="sec-tag">FAKESTORE</span></h2>
+        <div class="search-box">
+          <input type="text" id="ecomm-input" placeholder="Buscar productos...">
+          <button id="ecomm-btn">BUSCAR</button>
+        </div>
+        <div id="ecomm-loading" style="display:none;">CARGANDO...</div>
+        <div id="ecomm-grid" class="ecomm-grid"></div>
+        <p id="ecomm-error" class="msg-err" style="display:none;">Error al cargar productos.</p>
+      </section>
+
+      <section id="sec-reg" class="sec">
+        <h2 class="sec-title">Registros <span class="sec-tag">SUPABASE</span></h2>
+        <div class="card-glass">
+          <form id="msj-form">
+            <input type="text" id="msj-nombre" placeholder="Nombre completo" required>
+            <input type="text" id="msj-carrera" placeholder="Carrera" required>
+            <button type="submit">GUARDAR EN DB</button>
+          </form>
+          <p id="msj-success" style="display:none; color:var(--neon);">¡Registro guardado!</p>
+          <p id="msj-error" class="msg-err" style="display:none;"></p>
+          <div id="msj-lista" class="msj-lista"></div>
+        </div>
+      </section>
+
+      <section id="sec-notis" class="sec">
+        <h2 class="sec-title">Notificaciones <span class="sec-tag">SISTEMA</span></h2>
+        <div class="card-glass">
+          <form id="notis-form">
+            <input type="email" id="notis-to" placeholder="Para (Email)" required>
+            <input type="text" id="notis-subject" placeholder="Asunto" required>
+            <textarea id="notis-message" placeholder="Mensaje..." required></textarea>
+            <button type="submit" id="notis-btn">ENVIAR CORREO</button>
+          </form>
+          <p id="notis-success" style="display:none; color:var(--neon);">Mensaje enviado con éxito.</p>
+          <p id="notis-error" class="msg-err" style="display:none;">Error al enviar.</p>
+        </div>
+      </section>
+
+      <section id="sec-stream" class="sec">
+        <h2 class="sec-title">Streaming <span class="sec-tag">DEEZER</span></h2>
+        <div class="search-box">
+          <input type="text" id="stream-input" placeholder="Buscar artista o canción...">
+          <button id="stream-btn">BUSCAR</button>
+        </div>
+        <div id="stream-player" class="card-glass player-card" style="display:none;">
+          <img id="player-img" src="" alt="Album">
+          <div class="player-info">
+            <h3 id="player-title"></h3>
+            <p id="player-artist"></p>
+            <audio id="player-audio" controls></audio>
+          </div>
+        </div>
+        <div id="stream-grid" class="stream-grid"></div>
+        <p id="stream-error" class="msg-err" style="display:none;">No se encontraron resultados.</p>
+      </section>
+    </main>
   </div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -82,7 +157,10 @@
     function goToDashboard() {
       document.getElementById('landing').classList.remove('active');
       document.getElementById('dashboard').classList.add('active');
-      if (!window._mapInited) { initGeo(); window._mapInited = true; }
+      // Inicializar mapa si no existe
+      if (typeof initGeo === 'function') {
+        setTimeout(() => { initGeo(); }, 100);
+      }
     }
     function goToLanding() {
       document.getElementById('dashboard').classList.remove('active');
