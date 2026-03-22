@@ -3,106 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Nexus | Premium</title>
+  <title>API Nexus | Final Edition</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Bebas+Neue&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div id="landing" class="page active" style="text-align: center; padding-top: 20vh;">
+  <div id="landing" class="page active" style="text-align: center; padding-top: 15vh;">
     <h1 class="hero-title">API NEXUS</h1>
-    <p style="color: var(--accent); font-family: 'Space Mono';">[ SYSTEM ONLINE ]</p>
-    <button class="btn-action" onclick="goToDashboard()" style="margin-top: 30px; font-size: 1.5rem;">INICIAR PANEL</button>
+    <p style="color: var(--accent); font-family: 'Space Mono'; letter-spacing: 5px;">[ FULL SYSTEM OPERATIONAL ]</p>
+    <button class="btn-action" onclick="goToDashboard()" style="margin-top: 30px; padding: 15px 40px; font-size: 1.5rem;">ENTRAR AL SISTEMA</button>
   </div>
 
   <div id="dashboard" class="page" style="display: none;">
     <aside class="sidebar">
-      <div style="font-family: 'Bebas Neue'; font-size: 2rem; color: var(--accent); text-align: center; margin-bottom: 40px;">API·NEXUS</div>
+      <div style="font-family: 'Bebas Neue'; font-size: 2rem; color: var(--accent); text-align: center; margin-bottom: 30px;">MENU PRINCIPAL</div>
       <nav>
-        <button class="sb-btn active" onclick="showSec('sec-geo')">MUNDO / MAPA</button>
-        <button class="sb-btn" onclick="showSec('sec-redes')">GITHUB</button>
-        <button class="sb-btn" onclick="showSec('sec-ecomm')">TIENDA</button>
-        <button class="sb-btn" onclick="showSec('sec-reg')">BASE DE DATOS</button>
-        <button class="sb-btn" onclick="showSec('sec-notis')">CORREO</button>
-        <button class="sb-btn" onclick="showSec('sec-stream')">MÚSICA</button>
+        <button class="sb-btn active" onclick="showSec('sec-geo', this)">📍 MAPA UNIVERSITARIO</button>
+        <button class="sb-btn" onclick="showSec('sec-redes', this)">🐙 GITHUB SCANNER</button>
+        <button class="sb-btn" onclick="showSec('sec-ecomm', this)">🛒 TIENDA FAKE STORE</button>
+        <button class="sb-btn" onclick="showSec('sec-reg', this)">☁️ REGISTROS CLOUD</button>
+        <button class="sb-btn" onclick="showSec('sec-notis', this)">✉️ NOTIFICACIONES</button>
+        <button class="sb-btn" onclick="showSec('sec-stream', this)">🎵 DEEZER PLAYER</button>
       </nav>
+      <button onclick="location.reload()" style="background:transparent; color:#ff4444; border:1px solid #ff4444; width:100%; padding:10px; margin-top:15vh; cursor:pointer; font-family:'Bebas Neue'; border-radius: 10px;">DESCONECTAR</button>
     </aside>
 
     <main class="content">
+      
       <section id="sec-geo" class="sec activa">
-        <h2 class="hero-title" style="font-size: 2.5rem;">GEOLOCALIZACIÓN</h2>
-        <div class="card-glass" style="height: 500px; padding: 0;" id="map"></div>
+        <h2 class="hero-title" style="font-size: 2rem;">GEOLOCALIZACIÓN</h2>
+        <div class="card-glass" style="height: 500px; padding: 0; overflow: hidden;" id="map"></div>
       </section>
 
       <section id="sec-redes" class="sec">
-        <h2 class="hero-title" style="font-size: 2.5rem;">GITHUB EXPLORER</h2>
+        <h2 class="hero-title" style="font-size: 2rem;">GITHUB API</h2>
         <div class="card-glass">
-          <div style="display:flex; gap:10px;">
-            <input type="text" id="github-input" placeholder="Usuario...">
-            <button id="github-btn" class="btn-action">BUSCAR</button>
+          <div style="display:flex; gap:10px; margin-bottom:20px;">
+            <input type="text" id="github-input" placeholder="Nombre de usuario de GitHub...">
+            <button id="github-btn" class="btn-action">SCAN</button>
           </div>
-          <div id="perfil-card" style="display:none; margin-top:20px;">
-            <img id="perfil-avatar" src="" style="width:100px; border-radius:50%; border:3px solid var(--accent);">
-            <h3 id="perfil-nombre" style="color:var(--accent);"></h3>
-            <p id="perfil-bio"></p>
+          <div id="perfil-card" style="display:none; text-align:center;">
+            <img id="perfil-avatar" src="" style="width:120px; border-radius:50%; border:3px solid var(--accent); margin-bottom:15px;">
+            <h3 id="perfil-nombre" style="color:var(--accent); font-size:2rem; margin:0;"></h3>
+            <p id="perfil-username" style="font-family:'Space Mono'; color:#888;"></p>
+            <p id="perfil-bio" style="font-style:italic; margin:15px 0;"></p>
+            <div style="display:flex; justify-content:center; gap:30px; background:rgba(0,0,0,0.3); padding:15px; border-radius:15px;">
+              <div><span id="stat-repos" style="font-size:1.5rem; color:var(--accent); font-weight:bold;"></span><br><small>REPOS</small></div>
+              <div><span id="stat-followers" style="font-size:1.5rem; color:var(--accent); font-weight:bold;"></span><br><small>FOLLOWERS</small></div>
+              <div><span id="stat-following" style="font-size:1.5rem; color:var(--accent); font-weight:bold;"></span><br><small>FOLLOWING</small></div>
+            </div>
           </div>
+          <p id="perfil-error" style="display:none; color: #ff4444; font-family:'Space Mono';">USUARIO NO ENCONTRADO</p>
         </div>
       </section>
 
       <section id="sec-ecomm" class="sec">
-        <h2 class="hero-title" style="font-size: 2.5rem;">E-COMMERCE</h2>
+        <h2 class="hero-title" style="font-size: 2rem;">FAKE STORE API</h2>
         <div class="card-glass">
-          <input type="text" id="ecomm-input" placeholder="Buscar producto...">
+          <div style="display:flex; gap:10px; margin-bottom:20px;">
+            <input type="text" id="ecomm-input" placeholder="Buscar productos...">
+            <button id="ecomm-btn" class="btn-action">FILTRAR</button>
+          </div>
+          <p id="ecomm-loading" style="display:none; color:var(--accent);">CARGANDO PRODUCTOS...</p>
           <div id="ecomm-grid" class="ecomm-grid"></div>
+          <p id="ecomm-error" style="display:none; color:red;">Error al cargar productos.</p>
         </div>
       </section>
 
       <section id="sec-reg" class="sec">
-        <h2 class="hero-title" style="font-size: 2.5rem;">REGISTROS SUPABASE</h2>
+        <h2 class="hero-title" style="font-size: 2rem;">SUPABASE CLOUD</h2>
         <div class="card-glass">
           <form id="msj-form">
-            <input type="text" id="msj-nombre" placeholder="Nombre" required>
-            <input type="text" id="msj-carrera" placeholder="Carrera" required>
-            <button type="submit" class="btn-action">GUARDAR</button>
+            <input type="text" id="msj-nombre" placeholder="Nombre completo" required>
+            <input type="text" id="msj-carrera" placeholder="Carrera universitaria" required>
+            <button type="submit" class="btn-action" style="width:100%;">REGISTRAR EN LA NUBE</button>
           </form>
-          <div id="msj-lista" style="margin-top:20px;"></div>
+          <p id="msj-success" style="display:none; color:#00ff00; margin-top:10px;">¡Guardado con éxito!</p>
+          <p id="msj-error" style="display:none; color:red; margin-top:10px;"></p>
+          <div id="msj-lista" style="margin-top:30px; display:grid; gap:10px;"></div>
         </div>
       </section>
 
       <section id="sec-notis" class="sec">
-        <h2 class="hero-title" style="font-size: 2.5rem;">NOTIFICACIONES</h2>
+        <h2 class="hero-title" style="font-size: 2rem;">RESEND API</h2>
         <div class="card-glass">
           <form id="notis-form">
-            <input type="email" id="notis-to" placeholder="Correo" required>
-            <input type="text" id="notis-subject" placeholder="Asunto" required>
-            <textarea id="notis-message" placeholder="Mensaje..."></textarea>
-            <button type="submit" id="notis-btn" class="btn-action">ENVIAR</button>
+            <input type="email" id="notis-to" placeholder="Correo de destino" required>
+            <input type="text" id="notis-subject" placeholder="Asunto del mensaje" required>
+            <textarea id="notis-message" placeholder="Contenido del correo..." rows="4"></textarea>
+            <button type="submit" id="notis-btn" class="btn-action" style="width:100%;">ENVIAR NOTIFICACIÓN</button>
           </form>
+          <p id="notis-success" style="display:none; color:#00ff00; margin-top:10px;">Email enviado correctamente.</p>
+          <p id="notis-error" style="display:none; color:red; margin-top:10px;">Error al enviar el email.</p>
         </div>
       </section>
 
       <section id="sec-stream" class="sec">
-        <h2 class="hero-title" style="font-size: 2.5rem;">STREAMING AUDIO</h2>
+        <h2 class="hero-title" style="font-size: 2rem;">DEEZER MUSIC</h2>
         <div class="card-glass">
-          <input type="text" id="stream-input" placeholder="Artista...">
-          <div id="stream-player" style="display:none; margin:20px 0; background:rgba(0,0,0,0.5); padding:15px; border-radius:10px;">
-             <h4 id="player-title"></h4>
-             <audio id="player-audio" controls></audio>
+          <div style="display:flex; gap:10px; margin-bottom:20px;">
+            <input type="text" id="stream-input" placeholder="Buscar artista o canción...">
+            <button id="stream-btn" class="btn-action">PLAY</button>
           </div>
+          
+          <div id="stream-player" style="display:none; align-items:center; gap:20px; background:rgba(0,0,0,0.4); padding:20px; border-radius:15px; margin-bottom:20px; border-left:4px solid var(--accent);">
+            <img id="player-img" src="" style="width:80px; border-radius:10px; box-shadow:0 0 15px var(--accent-glow);">
+            <div style="flex:1;">
+              <h4 id="player-title" style="margin:0; font-size:1.2rem;"></h4>
+              <p id="player-artist" style="color:var(--accent); margin:0;"></p>
+              <div style="display:flex; gap:10px; margin-top:10px;">
+                <button id="ctrl-prev" class="btn-action" style="padding:5px 15px;">⏮</button>
+                <button id="ctrl-play" class="btn-action" style="padding:5px 15px;">⏸</button>
+                <button id="ctrl-next" class="btn-action" style="padding:5px 15px;">⏭</button>
+              </div>
+              <audio id="player-audio"></audio>
+            </div>
+          </div>
+
           <div id="stream-grid" class="stream-grid"></div>
+          <p id="stream-error" style="display:none; color:red;">No se encontraron canciones.</p>
         </div>
       </section>
     </main>
   </div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="geo.js"></script>
-  <script src="redes.js"></script>
-  <script src="ecomm.js"></script>
-  <script type="module" src="registrar.js"></script>
-  <script src="notify.js"></script>
-  <script src="streaming.js"></script>
+  <script src="js/geo.js"></script>
+  <script src="js/redes.js"></script>
+  <script src="js/ecomm.js"></script>
+  <script type="module" src="js/registrar.js"></script>
+  <script src="js/notify.js"></script>
+  <script src="js/streaming.js"></script>
 
   <script>
     function goToDashboard() {
@@ -110,11 +143,12 @@
       document.getElementById('dashboard').style.display = 'block';
       setTimeout(() => { if(window.initGeo) initGeo(); }, 300);
     }
-    function showSec(id) {
+
+    function showSec(id, btn) {
       document.querySelectorAll('.sec').forEach(s => s.classList.remove('activa'));
       document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(id).classList.add('activa');
-      event.target.classList.add('active');
+      btn.classList.add('active');
     }
   </script>
 </body>
