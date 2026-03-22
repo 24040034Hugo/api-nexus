@@ -3,60 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Nexus | Full Premium</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Bebas+Neue&family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
+  <title>API Nexus | Premium Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <div id="landing" class="page active" style="text-align: center; padding-top: 20vh;">
-    <h1 class="hero-title">API NEXUS</h1>
-    <p style="color: var(--accent); font-family: 'Space Mono';">[ ALL APIS INTEGRATED ]</p>
-    <button class="btn-action" onclick="goToDashboard()" style="margin-top: 30px; font-size: 1.5rem;">ENTRAR AL PANEL</button>
+    <div class="hero-container">
+      <p style="letter-spacing: 8px; color: var(--accent); font-family: 'Space Mono';">[ SYSTEM ONLINE ]</p>
+      <h1 class="hero-title">API NEXUS</h1>
+      <p style="max-width: 600px; margin: 20px auto; color: var(--text-dim); line-height: 1.6;">
+        Acceso premium a la plataforma de integración de microservicios. 
+        Visualización de datos en tiempo real con tecnología Glassmorphism.
+      </p>
+      <button class="btn-action" onclick="goToDashboard()" style="margin-top: 30px; font-size: 1.8rem;">
+        INICIAR SESIÓN
+      </button>
+    </div>
   </div>
 
   <div id="dashboard" class="page" style="display: none;">
     <aside class="sidebar">
-      <h2 style="color: var(--accent); font-family: 'Bebas Neue'; text-align: center;">MENU</h2>
-      <nav style="margin-top: 30px;">
-        <button class="sb-btn" onclick="showSec('sec-geo')">MAPA</button>
-        <button class="sb-btn" onclick="showSec('sec-redes')">GITHUB</button>
-        <button class="sb-btn" onclick="showSec('sec-ecomm')">E-COMMERCE</button>
-        <button class="sb-btn" onclick="showSec('sec-reg')">REGISTROS</button>
-        <button class="sb-btn" onclick="showSec('sec-notis')">NOTIFICACIONES</button>
-        <button class="sb-btn" onclick="showSec('sec-stream')">STREAMING</button>
+      <div style="font-family: 'Bebas Neue'; font-size: 2rem; color: var(--accent); margin-bottom: 40px; text-align: center;">
+        API·NEXUS
+      </div>
+      <nav>
+        <button class="sb-btn active" data-seccion="sec-geo" onclick="showSec('sec-geo')">MUNDO / MAPAS</button>
+        <button class="sb-btn" data-seccion="sec-redes" onclick="showSec('sec-redes')">GITHUB SCANNER</button>
+        <button class="sb-btn" data-seccion="sec-ecomm" onclick="showSec('sec-ecomm')">E-COMMERCE</button>
+        <button class="sb-btn" data-seccion="sec-reg" onclick="showSec('sec-reg')">REGISTROS CLOUD</button>
+        <button class="sb-btn" data-seccion="sec-notis" onclick="showSec('sec-notis')">NOTIFICACIONES</button>
+        <button class="sb-btn" data-seccion="sec-stream" onclick="showSec('sec-stream')">STREAMING</button>
       </nav>
-      <button onclick="location.reload()" style="background:red; color:white; border:none; width:100%; padding:10px; margin-top:20vh; border-radius:8px;">SALIR</button>
+      <div style="margin-top: 20vh;">
+        <button onclick="location.reload()" style="background:transparent; color:#ff4444; border:1px solid #ff4444; width:100%; padding:10px; cursor:pointer; font-family:'Bebas Neue'; border-radius: 10px;">CERRAR SISTEMA</button>
+      </div>
     </aside>
 
     <main class="content">
       <section id="sec-geo" class="sec activa">
-        <h2 class="hero-title" style="font-size: 2rem;">GEOLOCALIZACIÓN</h2>
-        <div class="card-glass" style="height: 450px;" id="map"></div>
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">GEOLOCALIZACIÓN</h2>
+        <div class="card-glass" style="height: 500px; padding: 0; overflow: hidden; border-width: 2px;">
+          <div id="map" style="height: 100%; width: 100%;"></div>
+        </div>
       </section>
 
       <section id="sec-redes" class="sec">
-        <h2 class="hero-title" style="font-size: 2rem;">GITHUB EXPLORER</h2>
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">GITHUB EXPLORER</h2>
         <div class="card-glass">
-          <div style="display:flex; gap:10px;">
-            <input type="text" id="github-input" placeholder="Usuario...">
+          <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+            <input type="text" id="github-input" placeholder="Ingresa usuario (ej: 24040034hugo)..." style="flex: 1;">
             <button id="github-btn" class="btn-action">BUSCAR</button>
           </div>
-          <div id="perfil-card" style="display:none; margin-top:20px; text-align:center;">
-            <img id="perfil-avatar" src="" style="width:100px; border-radius:50%; border:2px solid var(--accent);">
-            <h3 id="perfil-nombre" style="color:var(--accent);"></h3>
-            <p id="perfil-bio"></p>
-            <p>Repos: <span id="stat-repos"></span> | Followers: <span id="stat-followers"></span></p>
+          <div id="perfil-card" style="display:none;">
+            <div style="display: flex; align-items: center; gap: 30px;">
+              <img id="perfil-avatar" src="" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent);">
+              <div>
+                <h3 id="perfil-nombre" style="font-size: 2rem; margin: 0; color: var(--accent);"></h3>
+                <p id="perfil-username" style="color: #888;"></p>
+                <p id="perfil-bio" style="font-style: italic; color: #ccc;"></p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 40px; margin-top: 30px;">
+              <div style="text-align: center;"><span id="stat-repos" style="font-size: 1.5rem; color: var(--accent); font-weight: bold;"></span><br><small>REPOS</small></div>
+              <div style="text-align: center;"><span id="stat-followers" style="font-size: 1.5rem; color: var(--accent); font-weight: bold;"></span><br><small>FOLLOWERS</small></div>
+            </div>
           </div>
+          <p id="perfil-error" style="display:none; color: #ff4444; margin-top: 20px;">⚠️ USUARIO NO ENCONTRADO</p>
         </div>
       </section>
 
       <section id="sec-ecomm" class="sec">
-        <h2 class="hero-title" style="font-size: 2rem;">TIENDA VIRTUAL</h2>
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">TERMINAL DE VENTAS</h2>
         <div class="card-glass">
-          <div style="display:flex; gap:10px;">
-            <input type="text" id="ecomm-input" placeholder="Buscar producto...">
+          <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+            <input type="text" id="ecomm-input" placeholder="Buscar productos...">
             <button id="ecomm-btn" class="btn-action">FILTRAR</button>
           </div>
           <div id="ecomm-grid" class="ecomm-grid"></div>
@@ -64,40 +87,43 @@
       </section>
 
       <section id="sec-reg" class="sec">
-        <h2 class="hero-title" style="font-size: 2rem;">REGISTROS CLOUD</h2>
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">DATABASE CLOUD</h2>
         <div class="card-glass">
           <form id="msj-form">
-            <input type="text" id="msj-nombre" placeholder="Nombre" required>
-            <input type="text" id="msj-carrera" placeholder="Carrera" required>
-            <button type="submit" class="btn-action">GUARDAR</button>
+            <input type="text" id="msj-nombre" placeholder="Nombre completo" required>
+            <input type="text" id="msj-carrera" placeholder="Carrera / Área" required>
+            <button type="submit" class="btn-action">GUARDAR EN LA NUBE</button>
           </form>
-          <div id="msj-lista" style="margin-top:20px;"></div>
+          <div id="msj-lista" style="margin-top: 30px;"></div>
         </div>
       </section>
 
       <section id="sec-notis" class="sec">
-        <h2 class="hero-title" style="font-size: 2rem;">ENVÍO DE ALERTAS</h2>
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">CORREO DEL SISTEMA</h2>
         <div class="card-glass">
           <form id="notis-form">
-            <input type="email" id="notis-to" placeholder="Correo" required>
+            <input type="email" id="notis-to" placeholder="Destinatario" required>
             <input type="text" id="notis-subject" placeholder="Asunto" required>
-            <textarea id="notis-message" placeholder="Mensaje..."></textarea>
-            <button type="submit" id="notis-btn" class="btn-action">ENVIAR</button>
+            <textarea id="notis-message" placeholder="Escribe el mensaje aquí..." rows="4"></textarea>
+            <button type="submit" id="notis-btn" class="btn-action">DESPACHAR MENSAJE</button>
           </form>
         </div>
       </section>
 
       <section id="sec-stream" class="sec">
-        <h2 class="hero-title" style="font-size: 2rem;">MUSIC PLAYER</h2>
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">SISTEMA DE AUDIO</h2>
         <div class="card-glass">
-          <div style="display:flex; gap:10px;">
-            <input type="text" id="stream-input" placeholder="Artista...">
-            <button id="stream-btn" class="btn-action">PLAY</button>
+          <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+            <input type="text" id="stream-input" placeholder="Buscar artista o canción...">
+            <button id="stream-btn" class="btn-action">REPRODUCIR</button>
           </div>
-          <div id="stream-player" style="display:none; margin-top:20px; background:rgba(0,0,0,0.4); padding:15px; border-radius:10px;">
-            <img id="player-img" src="" style="width:50px;">
-            <h4 id="player-title"></h4>
-            <audio id="player-audio" controls></audio>
+          <div id="stream-player" style="display:none; margin-top:20px; padding:20px; background:rgba(0,0,0,0.3); border-radius:15px; display:flex; align-items:center; gap:20px;">
+            <img id="player-img" src="" style="width:60px; border-radius:10px;">
+            <div>
+              <h4 id="player-title" style="margin:0;"></h4>
+              <p id="player-artist" style="margin:0; color:var(--accent);"></p>
+              <audio id="player-audio" controls style="margin-top:10px;"></audio>
+            </div>
           </div>
           <div id="stream-grid" class="stream-grid"></div>
         </div>
@@ -122,7 +148,9 @@
     }
     function showSec(id) {
       document.querySelectorAll('.sec').forEach(s => s.classList.remove('activa'));
-      document.geElementById(id).classList.add('activa');
+      document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('activa');
+      event.target.classList.add('active');
     }
   </script>
 </body>
