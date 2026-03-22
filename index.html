@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Nexus — Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>API Nexus | Futurist Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,6 +12,8 @@
 
   <div id="landing" class="page active">
     <div class="noise"></div>
+    <div class="scanline"></div>
+    
     <header class="lnd-header">
       <div class="logo">
         <span class="logo-bracket">[</span>
@@ -19,25 +21,25 @@
         <span class="logo-bracket">]</span>
       </div>
       <div class="header-right">
-        <span class="badge">v2.0</span>
-        <span class="badge">STATIC·MOD</span>
+        <span class="badge">V2.0</span>
+        <span class="badge neon-border">ESTÁTICO</span>
       </div>
     </header>
 
     <main class="lnd-main">
       <div class="hero-section">
-        <div class="hero-label">// SISTEMA DE INTEGRACIÓN DE APIs</div>
+        <div class="hero-label">// ACCESO AL SISTEMA CORE</div>
         <h1 class="hero-title">
           <span class="line">CONECTIVIDAD</span>
-          <span class="line neon">TOTAL</span>
+          <span class="line neon-text">INFINITA</span>
         </h1>
         <p class="hero-desc">
-          Explora datos en tiempo real mediante el consumo de múltiples microservicios 
-          integrados en una interfaz industrial de alto rendimiento.
+          Dashboard de alto rendimiento optimizado para el consumo de microservicios 
+          y visualización de datos en tiempo real.
         </p>
         <button class="btn-primary" onclick="goToDashboard()">
-          ACCEDER AL DASHBOARD
-          <span class="btn-arrow">→</span>
+          INICIAR CONSOLA
+          <span class="btn-glitch"></span>
         </button>
       </div>
     </main>
@@ -55,91 +57,88 @@
         <a href="#" class="sb-link" data-seccion="sec-stream">STREAMING</a>
       </nav>
       <div class="sb-footer">
-        <button onclick="goToLanding()">CERRAR SESIÓN</button>
+        <button class="btn-logout" onclick="goToLanding()">DISCONNECT</button>
       </div>
     </aside>
 
     <main class="content">
       <section id="sec-geo" class="sec activa">
-        <h2 class="sec-title">Geolocalización <span class="sec-tag">LEAFLET</span></h2>
-        <div class="card-glass"><div id="map" style="height: 500px; width: 100%;"></div></div>
+        <h2 class="sec-title">Localización Global <span class="sec-tag">LEAFLET</span></h2>
+        <div class="card-glass map-container">
+          <div id="map" style="height: 100%; width: 100%;"></div>
+        </div>
       </section>
 
       <section id="sec-redes" class="sec">
-        <h2 class="sec-title">GitHub Profile <span class="sec-tag">GITHUB API</span></h2>
+        <h2 class="sec-title">Explorador de Redes <span class="sec-tag">GITHUB API</span></h2>
         <div class="search-box">
-          <input type="text" id="github-input" placeholder="Usuario de GitHub...">
-          <button id="github-btn">BUSCAR</button>
+          <input type="text" id="github-input" placeholder="Buscar usuario...">
+          <button id="github-btn">SCAN</button>
         </div>
-        <div id="perfil-card" class="card-glass" style="display:none;">
+        <div id="perfil-card" class="card-glass profile-card" style="display:none;">
           <img id="perfil-avatar" src="" alt="Avatar">
-          <h3 id="perfil-nombre"></h3>
-          <p id="perfil-username"></p>
-          <p id="perfil-bio"></p>
-          <div class="stats">
-            <div><span id="stat-repos">0</span> Repos</div>
-            <div><span id="stat-followers">0</span> Seguidores</div>
+          <div class="profile-info">
+            <h3 id="perfil-nombre"></h3>
+            <p id="perfil-username"></p>
+            <p id="perfil-bio"></p>
+            <div class="stats-grid">
+              <div class="stat"><span id="stat-repos">0</span><label>REPOS</label></div>
+              <div class="stat"><span id="stat-followers">0</span><label>FOLLOWERS</label></div>
+            </div>
           </div>
         </div>
-        <p id="perfil-error" class="msg-err" style="display:none;">Usuario no encontrado.</p>
       </section>
 
       <section id="sec-ecomm" class="sec">
-        <h2 class="sec-title">E-Commerce <span class="sec-tag">FAKESTORE</span></h2>
-        <div class="search-box">
-          <input type="text" id="ecomm-input" placeholder="Buscar productos...">
-          <button id="ecomm-btn">BUSCAR</button>
-        </div>
-        <div id="ecomm-loading" style="display:none;">CARGANDO...</div>
-        <div id="ecomm-grid" class="ecomm-grid"></div>
-        <p id="ecomm-error" class="msg-err" style="display:none;">Error al cargar productos.</p>
+          <h2 class="sec-title">Terminal de Ventas <span class="sec-tag">FAKESTORE</span></h2>
+          <div class="search-box">
+              <input type="text" id="ecomm-input" placeholder="Filtrar productos...">
+              <button id="ecomm-btn">SEARCH</button>
+          </div>
+          <div id="ecomm-grid" class="ecomm-grid"></div>
       </section>
 
       <section id="sec-reg" class="sec">
-        <h2 class="sec-title">Registros <span class="sec-tag">SUPABASE</span></h2>
-        <div class="card-glass">
-          <form id="msj-form">
-            <input type="text" id="msj-nombre" placeholder="Nombre completo" required>
-            <input type="text" id="msj-carrera" placeholder="Carrera" required>
-            <button type="submit">GUARDAR EN DB</button>
-          </form>
-          <p id="msj-success" style="display:none; color:var(--neon);">¡Registro guardado!</p>
-          <p id="msj-error" class="msg-err" style="display:none;"></p>
-          <div id="msj-lista" class="msj-lista"></div>
-        </div>
+          <h2 class="sec-title">Base de Datos <span class="sec-tag">SUPABASE</span></h2>
+          <div class="card-glass form-container">
+              <form id="msj-form">
+                  <input type="text" id="msj-nombre" placeholder="Nombre de usuario" required>
+                  <input type="text" id="msj-carrera" placeholder="Departamento/Carrera" required>
+                  <button type="submit" class="btn-neon">GUARDAR EN CLOUD</button>
+              </form>
+              <div id="msj-lista" class="msj-lista"></div>
+          </div>
       </section>
-
+      
       <section id="sec-notis" class="sec">
-        <h2 class="sec-title">Notificaciones <span class="sec-tag">SISTEMA</span></h2>
-        <div class="card-glass">
-          <form id="notis-form">
-            <input type="email" id="notis-to" placeholder="Para (Email)" required>
-            <input type="text" id="notis-subject" placeholder="Asunto" required>
-            <textarea id="notis-message" placeholder="Mensaje..." required></textarea>
-            <button type="submit" id="notis-btn">ENVIAR CORREO</button>
-          </form>
-          <p id="notis-success" style="display:none; color:var(--neon);">Mensaje enviado con éxito.</p>
-          <p id="notis-error" class="msg-err" style="display:none;">Error al enviar.</p>
-        </div>
+          <h2 class="sec-title">Mensajería <span class="sec-tag">FORM-RELAY</span></h2>
+          <div class="card-glass form-container">
+              <form id="notis-form">
+                  <input type="email" id="notis-to" placeholder="Destino" required>
+                  <input type="text" id="notis-subject" placeholder="Asunto del sistema" required>
+                  <textarea id="notis-message" placeholder="Escriba el mensaje aquí..." required></textarea>
+                  <button type="submit" id="notis-btn" class="btn-neon">DESPACHAR</button>
+              </form>
+          </div>
       </section>
 
       <section id="sec-stream" class="sec">
-        <h2 class="sec-title">Streaming <span class="sec-tag">DEEZER</span></h2>
-        <div class="search-box">
-          <input type="text" id="stream-input" placeholder="Buscar artista o canción...">
-          <button id="stream-btn">BUSCAR</button>
-        </div>
-        <div id="stream-player" class="card-glass player-card" style="display:none;">
-          <img id="player-img" src="" alt="Album">
-          <div class="player-info">
-            <h3 id="player-title"></h3>
-            <p id="player-artist"></p>
-            <audio id="player-audio" controls></audio>
+          <h2 class="sec-title">Audio Stream <span class="sec-tag">DEEZER</span></h2>
+          <div class="search-box">
+              <input type="text" id="stream-input" placeholder="Frecuencia/Artista...">
+              <button id="stream-btn">PLAY</button>
           </div>
-        </div>
-        <div id="stream-grid" class="stream-grid"></div>
-        <p id="stream-error" class="msg-err" style="display:none;">No se encontraron resultados.</p>
+          <div id="stream-player" class="card-glass player-ui" style="display:none;">
+              <img id="player-img" src="" alt="Album">
+              <div class="player-controls">
+                  <h4 id="player-title"></h4>
+                  <p id="player-artist"></p>
+                  <audio id="player-audio" controls></audio>
+              </div>
+          </div>
+          <div id="stream-grid" class="stream-grid"></div>
       </section>
+
     </main>
   </div>
 
@@ -157,10 +156,7 @@
     function goToDashboard() {
       document.getElementById('landing').classList.remove('active');
       document.getElementById('dashboard').classList.add('active');
-      // Inicializar mapa si no existe
-      if (typeof initGeo === 'function') {
-        setTimeout(() => { initGeo(); }, 100);
-      }
+      setTimeout(() => { if(window.initGeo) initGeo(); }, 200);
     }
     function goToLanding() {
       document.getElementById('dashboard').classList.remove('active');
