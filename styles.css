@@ -1076,3 +1076,31 @@ body {
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--dark3); }
 ::-webkit-scrollbar-thumb:hover { background: var(--neon); }
+/* Mejoras para las grillas de contenido */
+.ecomm-grid, .stream-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.ecomm-card, .stream-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.ecomm-card img, .stream-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.ecomm-card:hover, .stream-card:hover {
+  border-color: var(--accent);
+  transform: scale(1.02);
+}
