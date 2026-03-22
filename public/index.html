@@ -3,18 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Nexus</title>
+  <title>API Nexus — Dashboard Estático</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ══════════════ LANDING ══════════════ -->
   <div id="landing" class="page active">
-
     <div class="noise"></div>
-
     <header class="lnd-header">
       <div class="logo">
         <span class="logo-bracket">[</span>
@@ -23,376 +20,64 @@
       </div>
       <div class="header-right">
         <span class="badge">v2.0</span>
-        <span class="badge">NODE.JS</span>
+        <span class="badge">ESTÁTICA</span>
       </div>
     </header>
 
     <main class="lnd-main">
-
       <div class="hero-section">
         <div class="hero-label">// SISTEMA DE INTEGRACIÓN DE APIs</div>
         <h1 class="hero-title">
-          <span class="line1">CONNECT</span>
-          <span class="line2">THE <em>WORLD</em></span>
-          <span class="line3">WITH APIs</span>
+          <span class="line">CONECTIVIDAD</span>
+          <span class="line neon">TOTAL</span>
         </h1>
         <p class="hero-desc">
-          Seis servicios. Un panel. Datos en tiempo real desde mapas,
-          música, e-commerce y más — todo sobre Express.
+          Explora datos en tiempo real mediante el consumo de múltiples microservicios 
+          integrados en una interfaz industrial de alto rendimiento.
         </p>
-        <button class="cta-btn" onclick="goToDashboard()">
-          <span class="cta-text">INICIAR SISTEMA</span>
-          <span class="cta-arrow">→</span>
+        <button class="btn-primary" onclick="goToDashboard()">
+          ACCEDER AL DASHBOARD
+          <span class="btn-arrow">→</span>
         </button>
       </div>
-
-      <div class="grid-section">
-        <div class="api-card" onclick="goToDashboard()">
-          <div class="card-num">01</div>
-          <div class="card-icon">◎</div>
-          <div class="card-body">
-            <div class="card-name">GEO</div>
-            <div class="card-tech">Leaflet · OSM</div>
-          </div>
-          <div class="card-status">LIVE</div>
-        </div>
-        <div class="api-card" onclick="goToDashboard()">
-          <div class="card-num">02</div>
-          <div class="card-icon">◈</div>
-          <div class="card-body">
-            <div class="card-name">REDES</div>
-            <div class="card-tech">GitHub API</div>
-          </div>
-          <div class="card-status">LIVE</div>
-        </div>
-        <div class="api-card highlight" onclick="goToDashboard()">
-          <div class="card-num">03</div>
-          <div class="card-icon">◻</div>
-          <div class="card-body">
-            <div class="card-name">E-COMM</div>
-            <div class="card-tech">FakeStore</div>
-          </div>
-          <div class="card-status">LIVE</div>
-        </div>
-        <div class="api-card" onclick="goToDashboard()">
-          <div class="card-num">04</div>
-          <div class="card-icon">◫</div>
-          <div class="card-body">
-            <div class="card-name">BASE DE DATOS</div>
-            <div class="card-tech">Supabase</div>
-          </div>
-          <div class="card-status">LIVE</div>
-        </div>
-        <div class="api-card highlight" onclick="goToDashboard()">
-          <div class="card-num">05</div>
-          <div class="card-icon">◬</div>
-          <div class="card-body">
-            <div class="card-name">NOTIFS</div>
-            <div class="card-tech">Resend API</div>
-          </div>
-          <div class="card-status">LIVE</div>
-        </div>
-        <div class="api-card" onclick="goToDashboard()">
-          <div class="card-num">06</div>
-          <div class="card-icon">◉</div>
-          <div class="card-body">
-            <div class="card-name">STREAMING</div>
-            <div class="card-tech">Deezer API</div>
-          </div>
-          <div class="card-status">LIVE</div>
-        </div>
-      </div>
-
     </main>
-
-    <footer class="lnd-footer">
-      <span>UTC · ING. EN SISTEMAS · 2026</span>
-      <span class="sep">///</span>
-      <span>NODE.JS + EXPRESS + 6 APIS</span>
-    </footer>
-
   </div>
 
-  <!-- ══════════════ DASHBOARD ══════════════ -->
   <div id="dashboard" class="page">
-
-    <div class="noise"></div>
-
     <aside class="sidebar">
-      <div class="sb-brand" onclick="goToLanding()">
-        <span class="sb-logo">[API·NEXUS]</span>
-        <span class="sb-back">← SALIR</span>
-      </div>
-
+      <div class="sb-logo">API·NEXUS</div>
       <nav class="sb-nav">
-        <a href="#" class="sb-link active" data-seccion="geo">
-          <span class="sb-idx">01</span>
-          <span class="sb-name">Geolocalización</span>
-          <span class="sb-dot"></span>
-        </a>
-        <a href="#" class="sb-link" data-seccion="redes">
-          <span class="sb-idx">02</span>
-          <span class="sb-name">Redes Sociales</span>
-          <span class="sb-dot"></span>
-        </a>
-        <a href="#" class="sb-link" data-seccion="ecomm">
-          <span class="sb-idx">03</span>
-          <span class="sb-name">E-Commerce</span>
-          <span class="sb-dot"></span>
-        </a>
-        <a href="#" class="sb-link" data-seccion="msj">
-          <span class="sb-idx">04</span>
-          <span class="sb-name">Base de Datos</span>
-          <span class="sb-dot"></span>
-        </a>
-        <a href="#" class="sb-link" data-seccion="notis">
-          <span class="sb-idx">05</span>
-          <span class="sb-name">Notificaciones</span>
-          <span class="sb-dot"></span>
-        </a>
-        <a href="#" class="sb-link" data-seccion="streaming">
-          <span class="sb-idx">06</span>
-          <span class="sb-name">Streaming</span>
-          <span class="sb-dot"></span>
-        </a>
+        <a href="#" class="sb-link active" data-seccion="sec-geo">GEO / MAPS</a>
+        <a href="#" class="sb-link" data-seccion="sec-redes">REDES / GITHUB</a>
+        <a href="#" class="sb-link" data-seccion="sec-ecomm">E-COMMERCE</a>
+        <a href="#" class="sb-link" data-seccion="sec-reg">REGISTROS</a>
+        <a href="#" class="sb-link" data-seccion="sec-notis">NOTIFICACIONES</a>
+        <a href="#" class="sb-link" data-seccion="sec-stream">STREAMING</a>
       </nav>
-
       <div class="sb-footer">
-        <span class="sb-status">● SISTEMA ACTIVO</span>
+        <button onclick="goToLanding()">CERRAR SESIÓN</button>
       </div>
     </aside>
 
-    <main class="dash-content">
-
-      <!-- GEO -->
-      <section id="geo" class="sec activa">
-        <div class="sec-header">
-          <div class="sec-meta">
-            <span class="sec-idx">01 /</span>
-            <h2 class="sec-title">GEOLOCALIZACIÓN</h2>
-          </div>
-          <span class="sec-pill">Leaflet · OpenStreetMap</span>
-        </div>
-        <div class="sec-layout col2">
-          <div class="box"><div id="map"></div></div>
-          <div class="info-stack">
-            <div class="info-box">
-              <div class="info-label">FUNCIÓN</div>
-              <p>Mapa interactivo con marcadores y coordenadas en tiempo real sobre tiles de OpenStreetMap.</p>
-            </div>
-            <div class="info-box">
-              <div class="info-label">TECNOLOGÍA</div>
-              <p>Leaflet.js renderiza el mapa en canvas. No requiere API key — OSM es completamente abierto.</p>
-            </div>
-            <div class="info-box accent">
-              <div class="info-label">APLICACIÓN</div>
-              <p>Delivery, transporte, rastreo de activos y cualquier servicio basado en ubicación geográfica.</p>
-            </div>
-          </div>
-        </div>
+    <main class="content">
+      <section id="sec-geo" class="sec activa">
+        <h2 class="sec-title">Geolocalización <span class="sec-tag">LEAFLET</span></h2>
+        <div class="card-glass"><div id="map" style="height: 500px;"></div></div>
       </section>
 
-      <!-- REDES -->
-      <section id="redes" class="sec">
-        <div class="sec-header">
-          <div class="sec-meta">
-            <span class="sec-idx">02 /</span>
-            <h2 class="sec-title">REDES SOCIALES</h2>
-          </div>
-          <span class="sec-pill">GitHub REST API</span>
-        </div>
-        <div class="sec-layout col2">
-          <div class="box">
-            <div class="search-row">
-              <input type="text" id="github-input" placeholder="Usuario de GitHub..." autocomplete="off"/>
-              <button id="github-btn">BUSCAR</button>
-            </div>
-            <div class="perfil-card" id="perfil-card" style="display:none;">
-              <div class="perfil-top">
-                <img id="perfil-avatar" src="" alt="Avatar"/>
-                <div class="perfil-info">
-                  <h2 id="perfil-nombre"></h2>
-                  <span id="perfil-username"></span>
-                  <p id="perfil-bio"></p>
-                </div>
-              </div>
-              <div class="perfil-stats">
-                <div class="stat-item"><span class="stat-n" id="stat-repos"></span><span class="stat-l">Repos</span></div>
-                <div class="stat-item"><span class="stat-n" id="stat-followers"></span><span class="stat-l">Seguidores</span></div>
-                <div class="stat-item"><span class="stat-n" id="stat-following"></span><span class="stat-l">Siguiendo</span></div>
-              </div>
-              <a class="perfil-link" id="perfil-link" href="#" target="_blank">VER EN GITHUB →</a>
-            </div>
-            <p class="msg-err" id="perfil-error" style="display:none;">Usuario no encontrado.</p>
-          </div>
-          <div class="info-stack">
-            <div class="info-box">
-              <div class="info-label">FUNCIÓN</div>
-              <p>Obtiene nombre, bio, avatar y estadísticas de cualquier perfil público de GitHub.</p>
-            </div>
-            <div class="info-box">
-              <div class="info-label">ENDPOINT</div>
-              <p><code>api.github.com/users/{username}</code> — sin autenticación requerida.</p>
-            </div>
-            <div class="info-box accent">
-              <div class="info-label">APLICACIÓN</div>
-              <p>Portafolios dev, verificación de identidad y tarjetas de credenciales en apps.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ECOMM -->
-      <section id="ecomm" class="sec">
-        <div class="sec-header">
-          <div class="sec-meta">
-            <span class="sec-idx">03 /</span>
-            <h2 class="sec-title">E-COMMERCE</h2>
-          </div>
-          <span class="sec-pill">Fake Store API</span>
-        </div>
-        <div class="sec-layout">
-          <div class="search-row">
-            <input type="text" id="ecomm-input" placeholder="Buscar producto... (ej: jacket, laptop)" autocomplete="off"/>
-            <button id="ecomm-btn">BUSCAR</button>
-          </div>
-          <div id="ecomm-loading" style="display:none;"><p class="msg-info">Cargando productos...</p></div>
-          <div id="ecomm-grid" class="ecomm-grid"></div>
-          <p class="msg-err" id="ecomm-error" style="display:none;">No se encontraron productos.</p>
-        </div>
-      </section>
-
-      <!-- REGISTROS -->
-      <section id="msj" class="sec">
-        <div class="sec-header">
-          <div class="sec-meta">
-            <span class="sec-idx">04 /</span>
-            <h2 class="sec-title">BASE DE DATOS</h2>
-          </div>
-          <span class="sec-pill">Supabase · PostgreSQL</span>
-        </div>
-        <div class="sec-layout col2">
-          <div class="box">
-            <form id="msj-form" class="form-block">
-              <div class="form-title">NUEVO REGISTRO</div>
-              <div class="field-group">
-                <label>NOMBRE</label>
-                <input type="text" id="msj-nombre" placeholder="Ej: Juan Pérez" required/>
-              </div>
-              <div class="field-group">
-                <label>CARRERA</label>
-                <input type="text" id="msj-carrera" placeholder="Ej: Ing. en Sistemas" required/>
-              </div>
-              <button type="submit" class="form-submit">REGISTRAR</button>
-              <p class="msg-ok" id="msj-success" style="display:none;">✓ REGISTRO GUARDADO.</p>
-              <p class="msg-err" id="msj-error" style="display:none;"></p>
-            </form>
-          </div>
-          <div class="box">
-            <div class="form-title">REGISTROS RECIENTES</div>
-            <div id="msj-lista" class="msj-lista"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- NOTIS -->
-      <section id="notis" class="sec">
-        <div class="sec-header">
-          <div class="sec-meta">
-            <span class="sec-idx">05 /</span>
-            <h2 class="sec-title">NOTIFICACIONES</h2>
-          </div>
-          <span class="sec-pill">Resend API</span>
-        </div>
-        <div class="sec-layout col2">
-          <div class="box">
-            <form id="notis-form" class="form-block">
-              <div class="form-title">ENVIAR CORREO</div>
-              <div class="field-group">
-                <label>DESTINATARIO</label>
-                <input type="email" id="notis-to" placeholder="correo@ejemplo.com" required/>
-              </div>
-              <div class="field-group">
-                <label>ASUNTO</label>
-                <input type="text" id="notis-subject" placeholder="Asunto del correo" required/>
-              </div>
-              <div class="field-group">
-                <label>MENSAJE</label>
-                <textarea id="notis-message" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
-              </div>
-              <button type="submit" class="form-submit" id="notis-btn">ENVIAR CORREO</button>
-              <p class="msg-ok" id="notis-success" style="display:none;">✓ CORREO ENVIADO.</p>
-              <p class="msg-err" id="notis-error" style="display:none;">Error al enviar.</p>
-            </form>
-          </div>
-          <div class="info-stack">
-            <div class="info-box">
-              <div class="info-label">FUNCIÓN</div>
-              <p>Envía correos reales a cualquier destinatario directamente desde el formulario.</p>
-            </div>
-            <div class="info-box">
-              <div class="info-label">ARQUITECTURA</div>
-              <p>Express actúa como proxy hacia Resend API. La key secreta nunca se expone al cliente.</p>
-            </div>
-            <div class="info-box accent">
-              <div class="info-label">LÍMITE</div>
-              <p>100 correos diarios en el plan gratuito de Resend. Sin configurar SMTP propio.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- STREAMING -->
-      <section id="streaming" class="sec">
-        <div class="sec-header">
-          <div class="sec-meta">
-            <span class="sec-idx">06 /</span>
-            <h2 class="sec-title">STREAMING</h2>
-          </div>
-          <span class="sec-pill">Deezer API</span>
-        </div>
-        <div class="sec-layout">
-          <div class="search-row">
-            <input type="text" id="stream-input" placeholder="Buscar canción o artista..." autocomplete="off"/>
-            <button id="stream-btn">BUSCAR</button>
-          </div>
-          <div class="stream-player" id="stream-player" style="display:none;">
-            <img id="player-img" src="" alt="Cover"/>
-            <div class="player-info">
-              <p class="player-title" id="player-title"></p>
-              <p class="player-artist" id="player-artist"></p>
-              <div class="player-track">
-                <div class="track-bar"><div class="track-fill" id="player-fill"></div></div>
-                <div class="track-time">
-                  <span id="player-current">0:00</span>
-                  <span>0:30</span>
-                </div>
-              </div>
-            </div>
-            <div class="player-controls">
-              <button class="ctrl" id="ctrl-prev">⏮</button>
-              <button class="ctrl ctrl-main" id="ctrl-play">⏸</button>
-              <button class="ctrl" id="ctrl-next">⏭</button>
-            </div>
-            <audio id="player-audio"></audio>
-          </div>
-          <div id="stream-grid" class="stream-grid"></div>
-          <p class="msg-err" id="stream-error" style="display:none;">No se encontraron resultados.</p>
-        </div>
-      </section>
-
-    </main>
+      </main>
   </div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="js/geo.js"></script>
+  <script src="geo.js"></script>
   <script src="main.js"></script>
-  <script src="js/redes.js"></script>
-  <script src="js/ecomm.js"></script>
-  <script type="module" src="js/registrar.js"></script>
-  <script src="js/notify.js"></script>
-  <script src="js/animaciones.js"></script>
-  <script src="js/streaming.js"></script>
+  <script src="redes.js"></script>
+  <script src="ecomm.js"></script>
+  <script type="module" src="registrar.js"></script>
+  <script src="notify.js"></script>
+  <script src="animaciones.js"></script>
+  <script src="streaming.js"></script>
+
   <script>
     function goToDashboard() {
       document.getElementById('landing').classList.remove('active');
@@ -404,6 +89,5 @@
       document.getElementById('landing').classList.add('active');
     }
   </script>
-
 </body>
 </html>
