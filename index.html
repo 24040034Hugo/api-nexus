@@ -3,164 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Nexus | Futurist Dashboard</title>
+  <title>API Nexus | Premium Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div id="landing" class="page active">
-    <div class="noise"></div>
-    <div class="scanline"></div>
-    
-    <header class="lnd-header">
-      <div class="logo">
-        <span class="logo-bracket">[</span>
-        API<span class="logo-dot">·</span>NEXUS
-        <span class="logo-bracket">]</span>
-      </div>
-      <div class="header-right">
-        <span class="badge">V2.0</span>
-        <span class="badge neon-border">ESTÁTICO</span>
-      </div>
-    </header>
-
-    <main class="lnd-main">
-      <div class="hero-section">
-        <div class="hero-label">// ACCESO AL SISTEMA CORE</div>
-        <h1 class="hero-title">
-          <span class="line">CONECTIVIDAD</span>
-          <span class="line neon-text">INFINITA</span>
-        </h1>
-        <p class="hero-desc">
-          Dashboard de alto rendimiento optimizado para el consumo de microservicios 
-          y visualización de datos en tiempo real.
-        </p>
-        <button class="btn-primary" onclick="goToDashboard()">
-          INICIAR CONSOLA
-          <span class="btn-glitch"></span>
-        </button>
-      </div>
-    </main>
+  <div id="landing" class="page active" style="text-align: center; padding-top: 20vh;">
+    <div class="hero-container">
+      <p style="letter-spacing: 8px; color: var(--accent); font-family: 'Space Mono';">[ SYSTEM ONLINE ]</p>
+      <h1 class="hero-title">API NEXUS</h1>
+      <p style="max-width: 600px; margin: 20px auto; color: var(--text-dim); line-height: 1.6;">
+        Acceso premium a la plataforma de integración de microservicios. 
+        Visualización de datos en tiempo real con tecnología Glassmorphism.
+      </p>
+      <button class="btn-action" onclick="goToDashboard()" style="margin-top: 30px; font-size: 1.8rem;">
+        INICIAR SESIÓN
+      </button>
+    </div>
   </div>
 
-  <div id="dashboard" class="page">
+  <div id="dashboard" class="page" style="display: none;">
     <aside class="sidebar">
-      <div class="sb-logo">API·NEXUS</div>
-      <nav class="sb-nav">
-        <a href="#" class="sb-link active" data-seccion="sec-geo">GEO / MAPS</a>
-        <a href="#" class="sb-link" data-seccion="sec-redes">REDES / GITHUB</a>
-        <a href="#" class="sb-link" data-seccion="sec-ecomm">E-COMMERCE</a>
-        <a href="#" class="sb-link" data-seccion="sec-reg">REGISTROS</a>
-        <a href="#" class="sb-link" data-seccion="sec-notis">NOTIFICACIONES</a>
-        <a href="#" class="sb-link" data-seccion="sec-stream">STREAMING</a>
+      <div style="font-family: 'Bebas Neue'; font-size: 2rem; color: var(--accent); margin-bottom: 40px; text-align: center;">
+        API·NEXUS
+      </div>
+      <nav>
+        <button class="sb-btn" onclick="showSec('sec-geo')">MUNDO / MAPAS</button>
+        <button class="sb-btn" onclick="showSec('sec-redes')">GITHUB SCANNER</button>
       </nav>
-      <div class="sb-footer">
-        <button class="btn-logout" onclick="goToLanding()">DISCONNECT</button>
+      <div style="margin-top: 45vh;">
+        <button onclick="location.reload()" style="background:transparent; color:#ff4444; border:1px solid #ff4444; width:100%; padding:10px; cursor:pointer; font-family:'Bebas Neue'; border-radius: 8px;">CERRAR SISTEMA</button>
       </div>
     </aside>
 
     <main class="content">
       <section id="sec-geo" class="sec activa">
-        <h2 class="sec-title">Localización Global <span class="sec-tag">LEAFLET</span></h2>
-        <div class="card-glass map-container">
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">GEOLOCALIZACIÓN</h2>
+        <div class="card-glass" style="height: 550px; padding: 0; overflow: hidden; border-width: 2px;">
           <div id="map" style="height: 100%; width: 100%;"></div>
         </div>
       </section>
 
       <section id="sec-redes" class="sec">
-        <h2 class="sec-title">Explorador de Redes <span class="sec-tag">GITHUB API</span></h2>
-        <div class="search-box">
-          <input type="text" id="github-input" placeholder="Buscar usuario...">
-          <button id="github-btn">SCAN</button>
-        </div>
-        <div id="perfil-card" class="card-glass profile-card" style="display:none;">
-          <img id="perfil-avatar" src="" alt="Avatar">
-          <div class="profile-info">
-            <h3 id="perfil-nombre"></h3>
-            <p id="perfil-username"></p>
-            <p id="perfil-bio"></p>
-            <div class="stats-grid">
-              <div class="stat"><span id="stat-repos">0</span><label>REPOS</label></div>
-              <div class="stat"><span id="stat-followers">0</span><label>FOLLOWERS</label></div>
+        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 20px;">GITHUB EXPLORER</h2>
+        <div class="card-glass">
+          <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+            <input type="text" id="github-input" placeholder="Ingresa usuario (ej: 24040034hugo)..." style="flex: 1;">
+            <button id="github-btn" class="btn-action">BUSCAR</button>
+          </div>
+          
+          <div id="perfil-card" style="display:none; animation: fadeIn 0.5s;">
+            <div style="display: flex; align-items: center; gap: 30px;">
+              <img id="perfil-avatar" src="" style="width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--accent); box-shadow: 0 0 20px var(--accent-glow);">
+              <div>
+                <h3 id="perfil-nombre" style="font-size: 2.5rem; margin: 0; font-family: 'Bebas Neue'; color: var(--accent);"></h3>
+                <p id="perfil-username" style="font-family: 'Space Mono'; color: #888; margin-bottom: 10px;"></p>
+                <p id="perfil-bio" style="font-style: italic; color: #ccc; max-width: 400px;"></p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 40px; margin-top: 30px; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 15px;">
+              <div style="text-align: center;"><span id="stat-repos" style="font-size: 2rem; color: var(--accent); font-weight: bold;"></span><br><small style="color: #666;">REPOS</small></div>
+              <div style="text-align: center;"><span id="stat-followers" style="font-size: 2rem; color: var(--accent); font-weight: bold;"></span><br><small style="color: #666;">FOLLOWERS</small></div>
             </div>
           </div>
+          <p id="perfil-error" style="display:none; color: #ff4444; margin-top: 20px; font-family: 'Space Mono';">⚠️ USUARIO NO ENCONTRADO</p>
         </div>
       </section>
-
-      <section id="sec-ecomm" class="sec">
-          <h2 class="sec-title">Terminal de Ventas <span class="sec-tag">FAKESTORE</span></h2>
-          <div class="search-box">
-              <input type="text" id="ecomm-input" placeholder="Filtrar productos...">
-              <button id="ecomm-btn">SEARCH</button>
-          </div>
-          <div id="ecomm-grid" class="ecomm-grid"></div>
-      </section>
-
-      <section id="sec-reg" class="sec">
-          <h2 class="sec-title">Base de Datos <span class="sec-tag">SUPABASE</span></h2>
-          <div class="card-glass form-container">
-              <form id="msj-form">
-                  <input type="text" id="msj-nombre" placeholder="Nombre de usuario" required>
-                  <input type="text" id="msj-carrera" placeholder="Departamento/Carrera" required>
-                  <button type="submit" class="btn-neon">GUARDAR EN CLOUD</button>
-              </form>
-              <div id="msj-lista" class="msj-lista"></div>
-          </div>
-      </section>
-      
-      <section id="sec-notis" class="sec">
-          <h2 class="sec-title">Mensajería <span class="sec-tag">FORM-RELAY</span></h2>
-          <div class="card-glass form-container">
-              <form id="notis-form">
-                  <input type="email" id="notis-to" placeholder="Destino" required>
-                  <input type="text" id="notis-subject" placeholder="Asunto del sistema" required>
-                  <textarea id="notis-message" placeholder="Escriba el mensaje aquí..." required></textarea>
-                  <button type="submit" id="notis-btn" class="btn-neon">DESPACHAR</button>
-              </form>
-          </div>
-      </section>
-
-      <section id="sec-stream" class="sec">
-          <h2 class="sec-title">Audio Stream <span class="sec-tag">DEEZER</span></h2>
-          <div class="search-box">
-              <input type="text" id="stream-input" placeholder="Frecuencia/Artista...">
-              <button id="stream-btn">PLAY</button>
-          </div>
-          <div id="stream-player" class="card-glass player-ui" style="display:none;">
-              <img id="player-img" src="" alt="Album">
-              <div class="player-controls">
-                  <h4 id="player-title"></h4>
-                  <p id="player-artist"></p>
-                  <audio id="player-audio" controls></audio>
-              </div>
-          </div>
-          <div id="stream-grid" class="stream-grid"></div>
-      </section>
-
     </main>
   </div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="geo.js"></script>
-  <script src="main.js"></script>
   <script src="redes.js"></script>
-  <script src="ecomm.js"></script>
-  <script type="module" src="registrar.js"></script>
-  <script src="notify.js"></script>
-  <script src="animaciones.js"></script>
-  <script src="streaming.js"></script>
-
+  
   <script>
     function goToDashboard() {
-      document.getElementById('landing').classList.remove('active');
-      document.getElementById('dashboard').classList.add('active');
-      setTimeout(() => { if(window.initGeo) initGeo(); }, 200);
+      document.getElementById('landing').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      setTimeout(() => { 
+        if(typeof initGeo === 'function') initGeo(); 
+      }, 300);
     }
-    function goToLanding() {
-      document.getElementById('dashboard').classList.remove('active');
-      document.getElementById('landing').classList.add('active');
+
+    function showSec(id) {
+      document.querySelectorAll('.sec').forEach(s => s.classList.remove('activa'));
+      document.getElementById(id).classList.add('activa');
     }
   </script>
 </body>

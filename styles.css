@@ -1,101 +1,136 @@
 /* ════════════════════════════════════════
-   VARIABLES - Paleta Galáctica / Neón
+   VARIABLES — Edición Premium Purple & Gold
 ════════════════════════════════════════ */
 :root {
-  --bg-dark: #050505;
+  --bg-dark: #0a0510;       /* Fondo Morado profundo */
+  --accent: #ffcc00;        /* Dorado principal */
+  --accent-glow: rgba(255, 204, 0, 0.3);
+  --secondary: #7000ff;     /* Morado eléctrico */
   --glass: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --neon: #00f2ff; /* Cian Eléctrico */
-  --neon-secondary: #7000ff; /* Morado */
-  --white: #ffffff;
-  --text-gray: #a0a0a0;
-  --font-main: 'Nunito', sans-serif;
+  --text-main: #f0f0f0;
+  --text-dim: #a0a0a0;
+  
   --font-display: 'Bebas Neue', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-body: 'Nunito', sans-serif;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background: var(--bg-dark);
   background-image: 
-    radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(112, 0, 255, 0.05) 0%, transparent 40%);
-  color: var(--white);
-  font-family: var(--font-main);
-  margin: 0;
+    radial-gradient(circle at 50% -20%, var(--secondary) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, #1a0b2e 0%, transparent 40%);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* ── Efecto de Vidrio Esmerilado ── */
+/* ── Glassmorphism Cards ── */
 .card-glass {
   background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 25px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card-glass:hover {
-  border-color: var(--neon);
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow);
+  transform: translateY(-5px);
 }
 
-/* ── Animación del Título Hero ── */
+/* ── Títulos ── */
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 10vw, 6rem);
-  line-height: 0.9;
-  letter-spacing: -2px;
-  background: linear-gradient(to bottom, #fff 30%, var(--neon));
+  font-size: clamp(3.5rem, 12vw, 6.5rem);
+  background: linear-gradient(to bottom, #ffffff 40%, var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.3));
+  line-height: 0.85;
+  filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.2));
 }
 
-/* ── Botón Futurista ── */
-.btn-primary {
-  background: transparent;
-  color: var(--neon);
-  border: 2px solid var(--neon);
-  padding: 15px 40px;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: 0.3s;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-}
-
-.btn-primary:hover {
-  background: var(--neon);
-  color: var(--bg-dark);
-  box-shadow: 0 0 30px var(--neon);
-  transform: scale(1.05);
-}
-
-/* ── Sidebar Rediseñada ── */
+/* ── Sidebar ── */
 .sidebar {
-  background: rgba(0, 0, 0, 0.8);
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  background: rgba(5, 2, 8, 0.95);
   border-right: 1px solid var(--glass-border);
-  padding: 20px;
+  padding: 40px 20px;
+  z-index: 100;
 }
 
-.sb-link {
-  color: var(--text-gray);
-  text-decoration: none;
+.sb-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-dim);
+  padding: 14px;
+  margin-bottom: 15px;
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  display: block;
-  padding: 12px;
-  margin-bottom: 5px;
-  border-left: 3px solid transparent;
+  font-size: 1.3rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 12px;
   transition: 0.3s;
 }
 
-.sb-link:hover, .sb-link.active {
-  color: var(--neon);
-  background: rgba(0, 242, 255, 0.05);
-  border-left-color: var(--neon);
-  padding-left: 20px;
+.sb-btn:hover, .sb-btn.active {
+  background: var(--secondary);
+  color: white;
+  border-color: var(--accent);
+  padding-left: 25px;
+}
+
+/* ── Botones ── */
+.btn-action {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 12px 35px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+}
+
+.btn-action:hover {
+  transform: scale(1.05) translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* ── Inputs ── */
+input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Layout General ── */
+.content { margin-left: 280px; padding: 50px; }
+.sec { display: none; animation: slideIn 0.5s ease; }
+.sec.activa { display: block; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
